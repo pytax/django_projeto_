@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> Confirma Exclusão</h1>
+    <p> Tem certeza que deseja excluir a esta tarefa {{object.title}}?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirma Exclusão</button>
+    </form>
+    <a href="{% url "task-list" %}">Voltar para lista de tarefas</a>
+{% endblock content %}

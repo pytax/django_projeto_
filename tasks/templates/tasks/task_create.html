@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Cadastrar Tarefa</h1>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+    </form>
+    <a href="{% url "task-list" %}" >Cancelar</a>
+
+{% endblock content %}
