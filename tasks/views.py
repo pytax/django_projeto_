@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, DeleteView
 from django.views.generic.edit import UpdateView,CreateView
@@ -16,6 +17,14 @@ class TaskListView(ListView):
     model = Task
     tamplate_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        status = self.request.GET.get('status')
+        
+        if status:
+            queryset = queryset.filter(status=status)
+        return queryset
+
 
 class TaskUpdateView(UpdateView):
     model = Task
